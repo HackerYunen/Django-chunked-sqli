@@ -24,6 +24,7 @@ def division(text):
 
 def gen(payload):
     pay_list = division(payload)
+    yield bytes('fuck_waf&',encoding='utf8')
     yield bytes(pay_list[0],encoding='utf8')
     yield bytes(pay_list[1],encoding='utf8')
     yield bytes(pay_list[2],encoding='utf8')
